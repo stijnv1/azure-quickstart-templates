@@ -70,7 +70,7 @@
     "extensionVersion": "1.1",
     "encryptionOperation": "EnableEncryption",
     "keyEncryptionAlgorithm": "RSA-OAEP",
-    "updateVmUrl": "[concat('https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-encrypt-running-windows-vm/updatevm-',parameters('useExistingKek'),'.json')]",
+    "updateVmUrl": "[concat('https://raw.githubusercontent.com/stijnv1/azure-quickstart-templates/dev/201-encrypt-running-windows-vm/updatevm-',parameters('useExistingKek'),'.json')]",
     "keyVaultURL": "[concat('https://', parameters('keyVaultName'), '.vault.azure.net/')]",
     "keyVaultResourceID": "[concat(subscription().id,'/resourceGroups/',parameters('keyVaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', parameters('keyVaultName'))]"
   },
@@ -78,7 +78,7 @@
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(parameters('vmName'),'/', variables('extensionName'))]",
-      "apiVersion": "2016-04-30-preview",
+      "apiVersion": "2017-03-30",
       "location": "[resourceGroup().location]",
       "properties": {
         "publisher": "Microsoft.Azure.Security",
@@ -102,7 +102,7 @@
     {
       "name": "updatevm",
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2016-09-01",
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))]"
       ],
